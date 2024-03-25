@@ -1,0 +1,2 @@
+[GRUPO]
+[HOST] ansible_port=[PORT] ansible_user=[USER] ansible_ssh_private_key_file=[PRIVATE KEY]
