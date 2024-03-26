@@ -1,0 +1,17 @@
+---
+- name: Install k3s
+  hosts: sit
+  tasks:
+  - name: ping check
+    ping:
+
+  - name: Install k3s
+    become: yes
+    shell: curl -sfL https://get.k3s.io | sh -
+
+  - name: Check k3s status
+    command: systemctl status k3s
+    register: k3s_status
+
+  - name: Check k3s status
+    debug: msg={{ k3s_status.stdout }}

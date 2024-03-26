@@ -1,12 +1,20 @@
+---
 - name: connectivity check
   hosts: sit
   tasks:
-   - name: ping check
-     ping:
+  - name: ping check
+    ping:
 
-   - name: echo hello
-     command: echo hello world
-     register: result
+  - name: echo hello
+    command: echo hello world
+    register: result
 
-   - name: print the result
-     debug: msg="{{ result.stdout }}"
+  - name: print the result
+    debug: msg="{{ result.stdout }}"
+
+  - name: check the curl
+    command: curl https://github.com/virture-io
+    register: result
+
+  - name: print the result
+    debug: msg="{{ result.stdout }}"
