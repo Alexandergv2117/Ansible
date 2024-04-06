@@ -1,6 +1,6 @@
 ---
 - name: connectivity check
-  hosts: sit
+  hosts: local
   tasks:
   - name: ping check
     ping:
@@ -12,9 +12,3 @@
   - name: print the result
     debug: msg="{{ result.stdout }}"
 
-  - name: check the curl
-    command: curl https://github.com/virture-io
-    register: result
-
-  - name: print the result
-    debug: msg="{{ result.stdout }}"
