@@ -1,0 +1,29 @@
+---
+- name: Uninstall k3s
+  hosts: local
+  tasks:
+  - name: ping check
+    ping:
+
+  - name: Close ports
+    become: yes
+    shell: ufw deny 6443/tcp
+
+  - name: Uninstall k3s
+    become: yes
+    shell: k3s-uninstall.sh
+    args:
+      chdir: /usr/local/bin
+    register: k3s_uninstall
+    ignore_errors: yes
+
+  - name: Check k3s status
+    command: systemctl status k3s
+    register: k3s_status
+    ignore_errors: yes
+    no_log: true
+
+  - name: Check k3s status
+    debug:
+      msg: "k3s uninstall success"
+    when: k3s_status.rc != 0

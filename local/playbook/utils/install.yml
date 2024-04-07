@@ -2,8 +2,14 @@
 - name: Install tools
   hosts: local
   tasks:
-  - name: Install tools
+  - name: Install curl
     become: yes
     apt:
       name: curl
       state: present
+  
+  - name: Install ufw
+    become: yes
+    apt:
+      name: ufw
+      state: present 
