@@ -7,9 +7,3 @@
       apt:
         name: curl
         state: absent
-    
-    - name: Uninstall ufw
-      become: yes
-      apt:
-        name: ufw
-        state: absent

@@ -7,9 +7,3 @@
     apt:
       name: curl
       state: present
-  
-  - name: Install ufw
-    become: yes
-    apt:
-      name: ufw
-      state: present 
