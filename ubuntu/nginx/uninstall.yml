@@ -1,0 +1,56 @@
+---
+- name: Uninstall NGINX
+  hosts: ubuntu
+  tasks:
+    - name: Unmask NGINX service
+      become: yes
+      service:
+        name: nginx
+        unmask: yes
+      failed_when: false
+
+    - name: Stop NGINX service
+      become: yes
+      service:
+        name: nginx
+        state: stopped
+      failed_when: false
+
+    - name: Force stop NGINX service if it's still running
+      become: yes
+      shell: systemctl kill nginx
+      ignore_errors: yes
+
+    - name: Disable NGINX service
+      become: yes
+      service:
+        name: nginx
+        enabled: no
+      failed_when: false
+
+    - name: Uninstall nginx and nginx-common
+      become: yes
+      apt: 
+        name: 
+          - nginx
+          - nginx-common
+        state: absent
+        purge: yes
+
+    - name: Remove NGINX configuration directory
+      become: yes
+      file:
+        path: /etc/nginx
+        state: absent
+
+    - name: Remove NGINX web directory
+      become: yes
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: Remove NGINX log directory
+      become: yes
+      file:
+        path: /var/log/nginx
+        state: absent
