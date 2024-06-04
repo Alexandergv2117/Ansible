@@ -1,0 +1,31 @@
+---
+- name: Upload web site
+  hosts: ubuntu
+  become: true
+  vars:
+    site_src: "{{ site_src }}"
+    site_name: "{{ site_name }}"
+  
+  tasks:
+    - name: Ensure the destination directory does not exist
+      file:
+        path: "/var/www/{{ site_name }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Create the destination directory
+      file:
+        path: "/var/www/{{ site_name }}"
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Copy web site content
+      copy:
+        src: "{{ site_src }}/"
+        dest: "/var/www/{{ site_name }}/"
+        owner: www-data
+        group: www-data
+        mode: '0755'
+      loop: "{{ lookup('fileglob', site_src + '/*', wantlist=True) }}"
