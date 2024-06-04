@@ -2,16 +2,16 @@
 
 ## Configuración de hosts
 
-Para poder ejecutar los playbooks de ansible es necesario configurar los hosts en el archivo `hosts` que se encuentra en el directorio
+Para poder ejecutar los playbooks de `Ansible` es necesario configurar los hosts en el archivo `hosts` que se encuentra en el directorio.
 ```bash
 /etc/ansible
 ```
-Si no existe el archivo `hosts` se puede crear con el siguiente comando
+Si no existe el archivo `hosts` se puede crear con el siguiente comando.
 ```bash
 sudo touch /etc/ansible/hosts
 ```
 
-Ejemplo de configuración de hosts
+Ejemplo de configuración de hosts.
 ```bash
 [GRUPO]
 [HOST] ansible_port=[PORT] ansible_user=[USER] ansible_ssh_private_key_file=[PRIVATE KEY]
@@ -30,7 +30,7 @@ Ejemplo de configuración de hosts
 ## NOTES
 
 > [!IMPORTANT]
-> Con este parametro Ansible te pedira la contraseña de sudo antesn de correr el playbook.
+> Con este parámetro Ansible te pedirá la contraseña de sudo antes de correr el playbook.
 > 
 >  ```bash
 > --ask-become-pass
