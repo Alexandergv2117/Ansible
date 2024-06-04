@@ -17,11 +17,11 @@ Ejemplo de configuración de hosts
 [HOST] ansible_port=[PORT] ansible_user=[USER] ansible_ssh_private_key_file=[PRIVATE KEY]
 ```
 
-`GRUPO` es el nombre del grupo al que pertenece el host.
-`HOST` es la dirección IP o el DNS del host al que se va a conectar.
-`PORT` es el puerto por el cual se va a conectar al host.
-`USER` es el usuario con el que se va a conectar al host.
-`PRIVATE KEY` es la ruta del archivo de la llave privada con la que se va a conectar al host.
+- `GRUPO` es el nombre del grupo al que pertenece el host.
+- `HOST` es la dirección IP o el DNS del host al que se va a conectar.
+- `PORT` es el puerto por el cual se va a conectar al host.
+- `USER` es el usuario con el que se va a conectar al host.
+- `PRIVATE KEY` es la ruta del archivo de la llave privada con la que se va a conectar al host.
 
 > [!NOTE]
 > - Puede haber varios grupos en el archivo `hosts`.
