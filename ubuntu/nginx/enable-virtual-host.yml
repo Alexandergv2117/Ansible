@@ -1,0 +1,19 @@
+---
+- name: Enable virtual host
+  hosts: ubuntu
+  become: true
+  vars:
+    site_name: "{{ site_name }}"
+
+  tasks:
+    - name: Add symbolic link to sites-enabled
+      file:
+        src: "/etc/nginx/sites-available/{{ site_name }}"
+        dest: "/etc/nginx/sites-enabled/{{ site_name }}"
+        state: link
+      ignore_errors: yes
+    
+    - name: Restart NGINX service
+      service:
+        name: nginx
+        state: restarted

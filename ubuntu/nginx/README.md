@@ -31,7 +31,7 @@ A manera de demostración se ha creado un archivo de configuración de virtual h
 especificar la ruta en el comando. Así como el nombre del sitio y del servidor.
 
 ```bash
-ansible-playbook create-virtual-host.yml -e "site_name=mi_sitio server_name=mi_sitio.com config_src=./example/virtualhost.conf"
+ansible-playbook create-virtual-host.yml -e "site_name=mi_sitio server_name=mi_sitio.com config_src=./example/virtualhost.conf" --ask-become-pass
 ```
 
 ### Parámetros
@@ -57,3 +57,65 @@ ansible-playbook upload-website.yml -e "site_name=mi_sitio site_src=./example/mi
 
 - `site_name` es el nombre del sitio.
 - `site_src` es la ruta de la página web.
+
+### Verificar la página web con curl
+
+Para verificar que la página web se ha subido correctamente se puede ejecutar el siguiente comando.
+
+#### Sin DNS
+
+```bash
+  curl --resolve mi_sitio.com:80:[IP] http://mi_sitio.com
+```
+
+Donde `[IP]` es la dirección IP del servidor remoto.
+
+#### Con DNS
+
+```bash
+  curl [DNS]
+```
+
+Donde `[DNS]` es el nombre del servidor.
+
+## Eliminar un virtual host
+
+Para eliminar un virtual host de un servidor remoto se debe ejecutar el siguiente comando.
+
+Te pedirá la contraseña de sudo antes de correr el playbook.
+
+```bash
+ansible-playbook remove-virtual-host.yml -e "site_name=mi_sitio" --ask-become-pass
+```
+
+### Parámetros
+
+- `site_name` es el nombre del sitio.
+
+## Desabilitar un virtual host
+
+Para desabilitar un virtual host de un servidor remoto se debe ejecutar el siguiente comando.
+
+Te pedirá la contraseña de sudo antes de correr el playbook.
+
+```bash
+ansible-playbook disable-virtual-host.yml -e "site_name=mi_sitio" --ask-become-pass
+```
+
+### Parámetros
+
+- `site_name` es el nombre del sitio.
+
+## Habilitar un virtual host
+
+Para habilitar un virtual host de un servidor remoto se debe ejecutar el siguiente comando.
+
+Te pedirá la contraseña de sudo antes de correr el playbook.
+
+```bash
+ansible-playbook enable-virtual-host.yml -e "site_name=mi_sitio" --ask-become-pass
+```
+
+### Parámetros
+
+- `site_name` es el nombre del sitio.
