@@ -4,7 +4,7 @@
 
 Para poder ejecutar los playbooks de `Ansible` es necesario configurar los hosts en el archivo `hosts` que se encuentra en el directorio.
 ```bash
-/etc/ansible
+cd /etc/ansible
 ```
 Si no existe el archivo `hosts` se puede crear con el siguiente comando.
 ```bash
