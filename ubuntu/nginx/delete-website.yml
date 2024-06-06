@@ -1,0 +1,13 @@
+---
+- name: Delete web site
+  hosts: ubuntu
+  become: true
+  vars:
+    site_name: "{{ site_name }}"
+  
+  tasks:
+    - name: Ensure the destination directory does not exist
+      file:
+        path: "/var/www/{{ site_name }}"
+        state: absent
+      ignore_errors: yes

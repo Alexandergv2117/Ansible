@@ -58,17 +58,35 @@ ansible-playbook upload-website.yml -e "site_name=mi_sitio site_src=./example/mi
 - `site_name` es el nombre del sitio.
 - `site_src` es la ruta de la página web.
 
-### Verificar la página web con curl
+## Eliminar una página web
+
+Para eliminar una página web de un servidor remoto se debe ejecutar el siguiente comando.
+
+Te pedirá la contraseña de sudo antes de correr el playbook.
+
+```bash
+ansible-playbook delete-website.yml -e "site_name=mi_sitio2" --ask-become-pass
+```
+
+### Parámetros
+
+- `site_name` es el nombre del sitio.
+
+## Verificar la página web con curl
 
 Para verificar que la página web se ha subido correctamente se puede ejecutar el siguiente comando.
 
 #### Sin DNS
 
 ```bash
-  curl --resolve mi_sitio.com:80:[IP] http://mi_sitio.com
+  curl --resolve [SERVER_NAME]:[PORT]:[IP] [SERVER_NAME]
 ```
 
-Donde `[IP]` es la dirección IP del servidor remoto.
+### Parámetros
+
+- `SERVER_NAME` es el nombre del servidor.
+- `PORT` es el puerto.
+- `IP` es la dirección IP del servidor remoto.
 
 #### Con DNS
 
@@ -76,7 +94,9 @@ Donde `[IP]` es la dirección IP del servidor remoto.
   curl [DNS]
 ```
 
-Donde `[DNS]` es el nombre del servidor.
+### Parámetros
+
+- `DNS` es el nombre del servidor.
 
 ## Eliminar un virtual host
 

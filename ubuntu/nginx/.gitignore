@@ -1,0 +1,4 @@
+example/*
+
+!example/mi_sitio/*
+!example/virtualhost.conf
