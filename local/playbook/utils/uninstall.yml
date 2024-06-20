@@ -1,9 +1,0 @@
----
-- name: Uninstall tools 
-  hosts: local
-  tasks:
-    - name: Uninstall curl
-      become: yes
-      apt:
-        name: curl
-        state: absent

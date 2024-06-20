@@ -1,0 +1,22 @@
+---
+- name: Add user to groups
+  hosts: ubuntu
+  become: true
+  vars:
+    user_name: "{{ user_name }}"
+    group_names: "{{ group_names }}"
+
+  tasks:  
+    - name: Ensure the groups exist
+      group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ group_names.split(',') }}"
+
+    - name: Add user to groups
+      user:
+        name: "{{ user_name }}"
+        groups: "{{ item }}"
+        append: yes
+        state: present
+      loop: "{{ group_names.split(',') }}"

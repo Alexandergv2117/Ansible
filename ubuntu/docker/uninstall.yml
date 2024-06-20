@@ -1,0 +1,27 @@
+---
+- name: Uninstall Docker
+  hosts: ubuntu
+  tasks:
+  - name: Stop Docker service
+    become: yes
+    systemd:
+      name: docker
+      state: stopped
+    ignore_errors: yes  # Ignoramos los errores si el servicio ya está detenido
+
+  - name: Uninstall Docker Compose
+    become: yes
+    shell: rm -rf /usr/local/bin/docker-compose
+    ignore_errors: yes  # Ignoramos los errores si Docker Compose no está instalado
+
+  - name: Remove Docker packages
+    become: yes
+    apt:
+      name: "{{ item }}"
+      state: absent
+    with_items:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+      - docker-compose

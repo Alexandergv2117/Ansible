@@ -1,9 +1,0 @@
----
-- name: Install tools
-  hosts: local
-  tasks:
-  - name: Install curl
-    become: yes
-    apt:
-      name: curl
-      state: present
